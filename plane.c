@@ -2,20 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include<conio.h>
-#include <windows.h>
-typedef struct Plane_information
-{
-char id[20];//飞机编号
-int whole_seat;//总座位
-int rest_seat;
-int take_off_time[5];//起飞时间
-int landing_time[5];//着陆时间
-int prize;//价格
-int num;//索引序号
-
-struct Plane_information*next;
-}Plane_information;
-
+#include "function.h"
+#include "plane.h"
 
 /*@breif	打印航班信息
 * @param	航班信息结构体头指针
@@ -49,36 +37,6 @@ void Print_Plane_List(Plane_information *head)
 }
 
 
-//@return y返回666,n返回999
-int quit(void)
-{
-    char key=0;
-    printf("是否要继续录入航班信息(y/n)\n");
-    while(1)
-    {
-        if(_kbhit())
-        {
-             key=_getch();
-        
-        if(key=='y')
-        {
-           return 666;
-
-        }
-        else if(key=='n')
-        {
-            return 999;
-        }
-        else
-        {
-            printf("输入错误 请重新输入");
-        }
-        }
-    }
-
-
-}
-
 
 /*@breif	创造航班信息链表
 * @param	无
@@ -90,35 +48,24 @@ Plane_information* Create_Plane_List(void)
     int n=0;
     int key1;
     int key2;
-    int checkstatus=999;//询问是否要继续录入信息
+    int checkstatus;//询问是否要继续录入信息
     head=NULL;
     p1=p2=(Plane_information*)malloc(sizeof(Plane_information));
     printf("请输入：航班号 总座位 剩余座位 票价\n");
     scanf("%s %d %d %d", p1->id, &p1->whole_seat, &p1->rest_seat, &p1->prize);
 
-    printf("请输入起飞时间(年 月 日 时 分): ");
+    printf("请输入起飞时间(年 月 日 时 分):\n");
     scanf("%d %d %d %d %d", &p1->take_off_time[0], &p1->take_off_time[1], 
       &p1->take_off_time[2], &p1->take_off_time[3], &p1->take_off_time[4]);
 
-    printf("请输入着陆时间(年 月 日 时 分): ");
+    printf("请输入着陆时间(年 月 日 时 分):\n");
     scanf("%d %d %d %d %d", &p1->landing_time[0], &p1->landing_time[1], 
     &p1->landing_time[2], &p1->landing_time[3], &p1->landing_time[4]);
     head=p1;
 
-    while(1)
-    {
-      key1= quit();
-        if(key1==666||key1==999)
-        {
-            checkstatus=key1;
-            break;
-        }
-        else
-        {
-            printf("输入错误 请重新输入");
-        }
-    }
-    while(checkstatus==666)
+    printf("是否要继续录入航班信息(y/n)\n");
+    checkstatus=quit();
+    while(checkstatus==YES)
     {
         
         p2=(Plane_information*)malloc(sizeof(Plane_information));
@@ -128,16 +75,15 @@ Plane_information* Create_Plane_List(void)
         printf("请输入：航班号 总座位 剩余座位 票价\n");
         scanf("%s %d %d %d", p2->id, &p2->whole_seat, &p2->rest_seat, &p2->prize);
 
-        printf("请输入起飞时间(年 月 日 时 分): ");
+        printf("请输入起飞时间(年 月 日 时 分):\n");
         scanf("%d %d %d %d %d", &p2->take_off_time[0], &p2->take_off_time[1], 
                 &p2->take_off_time[2], &p2->take_off_time[3], &p2->take_off_time[4]);
 
-        printf("请输入着陆时间(年 月 日 时 分): ");
+        printf("请输入着陆时间(年 月 日 时 分):\n");
         scanf("%d %d %d %d %d", &p2->landing_time[0], &p2->landing_time[1], 
                 &p2->landing_time[2], &p2->landing_time[3], &p2->landing_time[4]);
         printf("是否要继续录入航班信息(y/n)\n");
-        checkstatus=quit();
-        
+        checkstatus=quit();        
     }   
     printf("退出程序\n");
     p2->next=NULL;
@@ -275,6 +221,7 @@ void update_Plane(Plane_information*head)
                 }
                 case 1:
                 {
+                    printf("请输入新的航班号\n");
                     char temp[20];
                     scanf("%s",temp);
                     strcpy(p->id,temp);
@@ -283,6 +230,7 @@ void update_Plane(Plane_information*head)
                 }           
                 case 2:
                 {
+                    printf("请输入新的总座位数\n");
                     int temp;
                     scanf("%d",&temp);
                     p->whole_seat=temp;
@@ -291,6 +239,7 @@ void update_Plane(Plane_information*head)
                 }
                 case 3:
                 {
+                    printf("请输入新的剩余座位数\n");
                     int temp;
                     scanf("%d",&temp);
                     p->rest_seat=temp;
@@ -299,6 +248,7 @@ void update_Plane(Plane_information*head)
                 }
                 case 4:
                 {
+                    printf("请输入新的起飞时间(年 月 日 时 分)\n");
                     int temp[5];
                     for(int i=0;i<5;i++)
                     {
@@ -313,6 +263,7 @@ void update_Plane(Plane_information*head)
                 }
                 case 5:
                 {
+                    printf("请输入新的着陆时间(年 月 日 时 分)\n");
                     int temp[5];
                     for(int i=0;i<5;i++)
                     {
@@ -327,6 +278,7 @@ void update_Plane(Plane_information*head)
                 }
                 case 6:
                 {
+                    printf("请输入新的机票价格\n");
                     float temp;
                     scanf("%f",&temp);
                     p->prize=temp;
@@ -351,14 +303,13 @@ void update_Plane(Plane_information*head)
 
 /*@breif	根据起飞时间查找航班信息
 * @param	航班信息结构体头指针
-* @return	航班信息结构体指针
+* @return	找到的航班结构体指针orNULL
 */
 struct Plane_information* Find_Plane_Day(Plane_information*head)
 {
     Plane_information*p=head;
     int take_off_time[5];
-
-    printf("请输入起飞时间(年 月 日 时 分): ");
+    printf("请输入要查询的航班的起飞时间(年 月 日 时 分): \n");
     scanf("%d %d %d %d %d", &take_off_time[0], &take_off_time[1], 
     &take_off_time[2], &take_off_time[3], &take_off_time[4]);
 
@@ -366,7 +317,7 @@ struct Plane_information* Find_Plane_Day(Plane_information*head)
     {
         if(memcmp(p->take_off_time,take_off_time,5*sizeof(int))==0)
         {
-            printf("已找到相应航班");
+            printf("已找到相应航班\n");
             return p;
         }
         p=p->next;
@@ -374,12 +325,12 @@ struct Plane_information* Find_Plane_Day(Plane_information*head)
 
     if(memcmp(p->take_off_time,take_off_time,5*sizeof(int))==0)
     {
-        printf("已找到相应航班");
+        printf("已找到相应航班\n");
         return p;
     }
     else
     {
-        printf("未找到相应航班");
+        printf("未找到相应航班\n");
         return NULL;
     }
 }

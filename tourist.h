@@ -2,8 +2,10 @@
 #define __TOURIST_H__
 #include "plane.h"
 
+#define Tourist_LEN sizeof(struct tourist)
 
 struct tourist* Register_Tourist(struct tourist*head);
+struct tourist* Loging_Account(struct tourist*head);
 void List_Tourist(struct tourist* head);
 struct tourist* Remove_Tourist(struct tourist*head,int id);
 void Change_tourist(struct tourist*Now_Account);

@@ -4,7 +4,7 @@
 #include <string.h>
 #include "tourist.h"
 
-#define Tourist_LEN sizeof(struct tourist)
+
 
 
 
@@ -101,6 +101,42 @@ struct tourist* Register_Tourist(struct tourist*head)
 		return head;
 	}	
 }	
+
+
+//这个还可以更进一步，与Find_tourist_Account合用，甚至可以考虑要不要和管理员登录合并
+/*@breif	登录账户
+* @param	游客头指针
+* @return	登录账号的游客指针orNULL
+*/
+struct tourist* Loging_Account(struct tourist*head)
+{
+	char Account[11];
+	char Password[21];
+	struct tourist*p;
+	p=head;
+	printf("正在登录,请输入账户和密码\n");
+	scanf("%s %s",Account,Password);
+	while(p->next!=NULL)
+	{
+		if(strcmp(Account,p->Account)==0&&strcmp(Password,p->password)==0)
+		{
+			printf("登录成功\n");
+			return p;
+		}
+		p=p->next;
+	}
+	if(strcmp(Account,p->Account)==0&&strcmp(Password,p->password)==0)
+	{
+		printf("登录成功\n");
+		return p;
+	}
+	else
+	{
+		printf("登录失败\n");
+		return NULL;
+	}
+}
+
 
 /*@breif	列举游客
 * @param	游客头指针

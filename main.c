@@ -3,7 +3,7 @@
 #include <string.h>
 #include "tourist.h"
 #include "plane.h"
-
+#include "Apply.h"
 //gcc -g main.c tourist.c -o main.
 struct tourist*Now_Account=NULL;
 struct tourist*head=NULL;
@@ -12,10 +12,14 @@ Plane_information* Now_Plane=NULL;
 
 int main()
 {
+	head=Register_Tourist(head);
+	Now_Account=Loging_Account(head);
+
 	Plane_head=Create_Plane_List();
 	Print_Plane_List(Plane_head);
-	update_Plane(Plane_head);
-	Print_Plane_List(Plane_head);
+	Book_Ticket(Now_Account,Plane_head);
+
+	printf("id:%s",Now_Account->plane->id);
 	
 	/*free();*/
 	return 0;
