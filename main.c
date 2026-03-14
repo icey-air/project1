@@ -14,8 +14,8 @@ int main()
 {
 	Plane_head=Create_Plane_List();
 	Print_Plane_List(Plane_head);
-	Now_Plane=Find_Plane_Day(Plane_head);
-
+	update_Plane(Plane_head);
+	Print_Plane_List(Plane_head);
 	
 	/*free();*/
 	return 0;

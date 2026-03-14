@@ -27,7 +27,7 @@ void Print_Plane_List(Plane_information *head)
     p=head;
     if(p==NULL)
     {
-        printf("空");
+        printf("航班列表为空，无法打印\n");
         return;
     }
     
@@ -191,31 +191,47 @@ Plane_information* Add_Plane(Plane_information *head)
 * @param    航班编号
 * @return	航班信息结构体头指针
 */
-Plane_information* Delete_Plane(Plane_information*head,char index[])
+Plane_information* Delete_Plane(Plane_information*head)
 {
-    Plane_information*p1=head,*p2=NULL;
-    while(p1->next!=NULL&&strcmp(p1->id,index)!=0)
+    char id[20];
+    printf("请输入要删除的航班号\n");
+    scanf("%s",id);
+    struct Plane_information*p1=head;
+    struct Plane_information*p2=NULL;
+
+    if(head==NULL)
     {
-        p1=p1->next;
-        p2=p1;
+        printf("航班列表为空\n");
+        return head;
     }
-    if(p1!=NULL&&strcmp(p1->id,index)==0)
+    while(p1->next!=NULL&&strcmp(p1->id,id)!=0)
+    {
+        p2=p1;
+        p1=p1->next;
+    }
+    if(strcmp(p1->id,id)==0)
     {
         if(p1==head)
         {
             head=p1->next;
+            free(p1);
+            printf("已删除航班号为%s的航班\n",id);
+            return head;
         }
         else
         {
             p2->next=p1->next;
-            //还没写释放内存
+            free(p1);
+            printf("已删除航班号为%s的航班\n",id);
+            return head;
         }
     }
     else
     {
-        printf("未能成功删除相应航班");
+        printf("未查找到相应的航班号\n");
+        return head;
     }
-    return head;
+ 
 }
 
 
@@ -224,82 +240,111 @@ Plane_information* Delete_Plane(Plane_information*head,char index[])
 * @param    航班编号
 * @return	无
 */
-void update_Plane(Plane_information*head,char index[])
-{
+void update_Plane(Plane_information*head)
+{   
+    Plane_information* p=head;
+    char id[20];
+    int choice;
+
+    printf("请输入要修改的航班号\n");
+    scanf("%s",id);
+
     if (head == NULL) {
         printf("航班列表为空\n");
         return;
     }
-    int choice;
-    Plane_information* p=head;
     
-    
-        while(p->next!=NULL&&strcmp(p->id,index)!=0)
-        {
-            p=p->next;
-        }
-    
-    if(p!=NULL)
+    while(p->next!=NULL&&strcmp(p->id,id)!=0)
     {
-        printf("请输入你想更改的信息");
-        printf("1.飞机编号 2.总座位数 3.剩余座位数 4.起飞时间 5.着陆时间 6.机票价格");
-        scanf("%d",&choice);
-        switch (choice)
+        p=p->next;
+    }
+
+    if(strcmp(p->id,id)==0)//找到了要修改的航班
+    {
+        while(1)
         {
-        case 1:
-            
-            break;
-        case 2:{
-            int temp;
-            scanf("%d",&temp);
-            p->whole_seat=temp;
-            break;
-        }
-        case 3:{
-            int temp;
-            scanf("%d",&temp);
-            p->rest_seat=temp;
-            break;
-        }
-        case 4:{
-            int temp[5];
-            for(int i=0;i<5;i++)
+            printf("请输入你想更改的信息\n");
+            printf("0.退出1.飞机编号 2.总座位数 3.剩余座位数 4.起飞时间 5.着陆时间 6.机票价格\n");
+            scanf("%d",&choice);
+            switch (choice)
             {
-                scanf("%d",&temp[i]);
+                case 0:
+                {
+                    printf("退出修改\n");
+                    return;
+                }
+                case 1:
+                {
+                    char temp[20];
+                    scanf("%s",temp);
+                    strcpy(p->id,temp);
+                    printf("已把%s的航班号修改为%s\n",id,temp);
+                    break;
+                }           
+                case 2:
+                {
+                    int temp;
+                    scanf("%d",&temp);
+                    p->whole_seat=temp;
+                    printf("已把%s的总座位数修改为%d\n",id,temp);
+                    break;
+                }
+                case 3:
+                {
+                    int temp;
+                    scanf("%d",&temp);
+                    p->rest_seat=temp;
+                    printf("已把%s的剩余座位数修改为%d\n",id,temp);
+                    break;
+                }
+                case 4:
+                {
+                    int temp[5];
+                    for(int i=0;i<5;i++)
+                    {
+                        scanf("%d",&temp[i]);
+                    }
+                    for(int i=0;i<5;i++)
+                    {
+                        p->take_off_time[i]=temp[i];
+                    }
+                    printf("已把%s的起飞时间修改为%d-%d-%d %d:%d\n",id,temp[0],temp[1],temp[2],temp[3],temp[4]);
+                    break;
+                }
+                case 5:
+                {
+                    int temp[5];
+                    for(int i=0;i<5;i++)
+                    {
+                        scanf("%d",&temp[i]);
+                    }
+                    for(int i=0;i<5;i++)
+                    {
+                        p->landing_time[i]=temp[i];
+                    }
+                    printf("已把%s的着陆时间修改为%d-%d-%d %d:%d\n",id,temp[0],temp[1],temp[2],temp[3],temp[4]);
+                    break;
+                }
+                case 6:
+                {
+                    float temp;
+                    scanf("%f",&temp);
+                    p->prize=temp;
+                    printf("已把%s的机票价格修改为%.2f\n",id,temp);
+                    break;
+                }
+                
+                default:
+                {
+                    printf("输入错误\n");
+                    break;
+                }
             }
-            for(int i=0;i<5;i++)
-            {
-                p->take_off_time[i]=temp[i];
-            }
-            break;
-        }
-        case 5:{
-            int temp[5];
-            for(int i=0;i<5;i++)
-            {
-                scanf("%d",&temp[i]);
-            }
-            for(int i=0;i<5;i++)
-            {
-                p->landing_time[i]=temp[i];
-            }
-            break;
-        }
-        case 6:{
-            float temp;
-            scanf("%f",&temp);
-            p->prize=temp;
-            break;
-        }
-        
-        default:
-            printf("输入错误");
-            break;
         }
     }
     else
     {
-        printf("未查找到相应的航班号");
+        printf("未查找到相应的航班号\n");
     }
 }
 
