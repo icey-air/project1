@@ -28,5 +28,15 @@ struct tourist
 	struct tourist *next;
 };
 
+struct passenger
+{
+	char name[20];
+	char phone_number[12];
+	char identity_card[19];
+
+	struct Plane_information*plane;
+	struct passenger*next;
+};
+
 
 #endif

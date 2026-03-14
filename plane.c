@@ -64,7 +64,7 @@ Plane_information* Create_Plane_List(void)
     head=p1;
 
     printf("是否要继续录入航班信息(y/n)\n");
-    checkstatus=quit();
+    checkstatus=Get_Key_YES_NO();
     while(checkstatus==YES)
     {
         
@@ -83,7 +83,7 @@ Plane_information* Create_Plane_List(void)
         scanf("%d %d %d %d %d", &p2->landing_time[0], &p2->landing_time[1], 
                 &p2->landing_time[2], &p2->landing_time[3], &p2->landing_time[4]);
         printf("是否要继续录入航班信息(y/n)\n");
-        checkstatus=quit();        
+        checkstatus=Get_Key_YES_NO();        
     }   
     printf("退出程序\n");
     p2->next=NULL;
@@ -334,3 +334,4 @@ struct Plane_information* Find_Plane_Day(Plane_information*head)
         return NULL;
     }
 }
+

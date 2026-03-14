@@ -19,9 +19,11 @@ int main()
 	Print_Plane_List(Plane_head);
 	Book_Ticket(Now_Account,Plane_head);
 
-	printf("id:%s",Now_Account->plane->id);
+	List_Ticket_Reservation(Now_Account);
+
 	
 	/*free();*/
 	return 0;
 	
 }
+

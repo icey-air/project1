@@ -4,6 +4,6 @@
 #define YES 666
 #define NO 999
 
-int quit(void);
+int Get_Key_YES_NO(void);
 
 #endif 

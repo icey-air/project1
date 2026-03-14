@@ -12,13 +12,13 @@
 void Book_Ticket(struct tourist*Now_Account,struct Plane_information*head)
 {
     struct Plane_information* Book_Plane;
-
+    printf("预定机票\n");
     Book_Plane=Find_Plane_Day(head);
     if(Book_Plane!=NULL)
     {
         printf("是否要预定航班%s的机票(y/n)\n",Book_Plane->id);
         int key;
-        key=quit();
+        key=Get_Key_YES_NO();
 
         if(key==YES)
         {

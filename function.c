@@ -5,7 +5,11 @@
 #include "function.h"
 
 
-int quit(void)
+/*@breif    查找并例出已预定的机票
+* @param	当前账户结构体地址
+* @return	无
+*/
+int Get_Key_YES_NO(void)
 {   
 
     char key=0;
