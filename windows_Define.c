@@ -103,8 +103,14 @@ void ShowUserWindow(HWND hwnd)
                  500, 90, 260, 350, hwnd, (HMENU)ID_STATIC_INFO, NULL, NULL);
                  
  
-
-
+    CreateWindow("STATIC", "起点:", WS_CHILD | WS_VISIBLE,
+                 20, 475, 50, 25, hwnd, NULL, NULL, NULL);
+    
+    CreateWindow("STATIC", "终点:", WS_CHILD | WS_VISIBLE,
+                 20, 500, 50, 25, hwnd, NULL, NULL, NULL);
+    
+    CreateWindow("STATIC", "时间:", WS_CHILD | WS_VISIBLE,
+                 20, 525, 50, 25, hwnd, NULL, NULL, NULL);
 
 
     // 显示所有航班

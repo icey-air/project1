@@ -14,7 +14,7 @@ FILE*Tourist_File_Save(struct tourist *Tourist_head)
 
     while(Tourist!=NULL)
     {
-    sprintf(buffer, "Account:%s Password:%s\n", Tourist->Account, Tourist->password);
+    sprintf(buffer, "%s:%s\n", Tourist->Account, Tourist->password);
 
     fputs(buffer,Tourist_File);
     Tourist=Tourist->next;
