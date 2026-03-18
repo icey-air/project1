@@ -32,3 +32,70 @@ Plane_information* Manager_Delete_Plane(HWND hwnd,Plane_information*head)//¶à´ÎÒ
     return head;
 }
 
+/**
+ * @brief ÏÔÊ¾Ìí¼Óº½°à¶Ô»°¿ò
+
+
+void ShowAddPlaneDialog(HWND hwnd)
+{
+    // ¼ò»¯°æ£ºÊ¹ÓÃDialogBox£¬ÕâÀïÓÃÊäÈë¿òÑİÊ¾
+    char id[20] = "", whole_seat[10] = "", rest_seat[10] = "", prize[10] = "";
+    char takeoff[50] = "", landing[50] = "";
+    
+    // ÔÚÊµ¼ÊÓ¦ÓÃÖĞ£¬ÕâÀïÓ¦¸Ã´´½¨Ò»¸ö¶Ô»°¿ò
+    // Îª¼ò»¯£¬ÎÒÃÇÊ¹ÓÃÒ»¸öÊäÈë¶Ô»°¿ò
+    id[0] = '\0';
+    if(InputBox(hwnd, "ÇëÊäÈëº½°àºÅ:", id, 20))
+    {
+        // ÕâÀï¼ò»¯´¦Àí£¬Êµ¼ÊÓ¦¸Ã»ñÈ¡ËùÓĞĞÅÏ¢
+        int w_seat = 200, r_seat = 200;
+        float pr = 800.0;
+        int takeoff_time[5] = {2024, 3, 15, 8, 0};
+        int landing_time[5] = {2024, 3, 15, 10, 30};
+        
+      
+        RefreshPlaneList(hwnd);
+    }
+    else//ÕâÀï×öÁËÒ»¸öÊäÈëÊ§°ÜµÄ¸Ä¶¯
+        //¼´Ã»ÓĞÊäÈëĞÅÏ¢¾Í½áÊø»òÊäÈë²»ÕıÈ·
+        //ÔİÊ±»¹Ã»Ïëµ½ÆäËübug
+    {
+        MessageBox(hwnd,"Ã»ÓĞÊäÈë£¬ÇëÖØĞÂÌí¼Ó","ÌáÊ¾",MB_OK);
+
+    }
+}
+*/
+// ¼òµ¥µÄÊäÈë¿òº¯Êı
+BOOL InputBox(HWND hwnd, char* prompt, char* result, int max_len)
+{
+    //ÕâÀï´òËãÔÙĞ´Ò»¸öboolÀàĞÍº¯ÊıÅĞ¶ÏÊäÈë ÕâÑù·½±ãºóĞøtouristÒ²Ò»Æğ¸Ä¶¯
+    /*if(){
+
+        return FALSE;
+    }*/
+    MessageBox(hwnd, "ÔÚÊµ¼ÊÓ¦ÓÃÖĞ£¬ÕâÀï»áµ¯³öÊäÈë¶Ô»°¿ò", "ÌáÊ¾", MB_OK);
+    strcpy(result, "CA1003");
+    return TRUE;
+}
+
+/**
+ * @brief ÅĞ¶ÏÊäÈëÊÇ·ñÈ«ÊäÈëÍê³É»òÊäÈë²»ÕıÈ·
+ */
+BOOL InputError(HWND hwnd, char* prompt, char* result, int max_len)
+{
+    
+}
+
+/**
+ * @brief ÏÔÊ¾ĞŞ¸Äº½°à¶Ô»°¿ò
+ */
+void ShowUpdatePlaneDialog(HWND hwnd)
+{
+    char id[20] = "";
+    if(InputBox(hwnd, "ÇëÊäÈëÒªĞŞ¸ÄµÄº½°àºÅ:", id, 20))
+    {
+        // ¼ò»¯´¦Àí
+      
+        RefreshPlaneList(hwnd);
+    }
+}

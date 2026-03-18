@@ -56,6 +56,7 @@ struct tourist* Register_Tourist(HWND hwnd,struct tourist*head)//ÓÐbug,¿ÕµÄÒ²ÄÜ×
 
 
 		MessageBox(hwnd, "×¢²á³É¹¦", "ÌáÊ¾", MB_OK);	
+		Tourist_File_Save(head);
 		return head;
 	}
 	
@@ -75,6 +76,7 @@ struct tourist* Register_Tourist(HWND hwnd,struct tourist*head)//ÓÐbug,¿ÕµÄÒ²ÄÜ×
 		strcpy(p1->phone_number,phone);
 		p1->Ticket_List=NULL;
 		MessageBox(hwnd, "×¢²á³É¹¦", "ÌáÊ¾", MB_OK);
+		Tourist_File_Save(head);
 		return head;
 	}	
 }	
@@ -200,10 +202,10 @@ void Change_tourist(struct tourist*Now_Account)
 	switch (mod)
 	{
 		case 1:
-			char name[10];
+			//char name[10];
 			printf("ÇëÊäÈëÃû×Ö");
-			scanf("%s",name);
-			strcpy(Now_Account->name,name);
+			//scanf("%s",name);
+			//strcpy(Now_Account->name,name);
 			break;
 		case 2:
 			Change_Phone_Number(Now_Account);
