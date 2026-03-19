@@ -165,7 +165,15 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             }
             else if(wmId == ID_BUTTON_REGISTER)
             {
+                Show_Rejister_Window(hwnd);                
+            }
+            else if(wmId == ID_BUtTON_REGISTER_COMFIRM)
+            {
                 tourist_head=Register_Tourist(hwnd,tourist_head);
+            }
+            else if(wmId == ID_BUtTON_REGISTER_CANCLE)
+            {
+                ShowLoginWindow(hwnd);
             }
             else if(wmId == ID_BUTTON_LOGOUT)
             {
@@ -257,7 +265,7 @@ void ShowLoginWindow(HWND hwnd)
                  300, 200, 50, 25, hwnd, NULL, NULL, NULL);
     
     CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
-                 360, 200, 150, 25, hwnd, (HMENU)ID_EDIT_USERNAME, NULL, NULL);
+                 360, 200, 150, 25, hwnd, (HMENU)ID_EDIT_ACCOUNT, NULL, NULL);
     
     CreateWindow("STATIC", "密码:", WS_CHILD | WS_VISIBLE,
                  300, 240, 50, 25, hwnd, NULL, NULL, NULL);
@@ -271,17 +279,17 @@ void ShowLoginWindow(HWND hwnd)
     CreateWindow("BUTTON", "用户登录", WS_CHILD | WS_VISIBLE,
                  410, 280, 100, 30, hwnd, (HMENU)ID_BUTTON_USER_LOGIN, NULL, NULL);
     
-    CreateWindow("STATIC", "新用户注册:", WS_CHILD | WS_VISIBLE,
-                 300, 330, 80, 25, hwnd, NULL, NULL, NULL);
-    
-    CreateWindow("STATIC", "电话:", WS_CHILD | WS_VISIBLE,
-                 300, 360, 50, 25, hwnd, NULL, NULL, NULL);
-    
-    CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
-                 360, 360, 150, 25, hwnd, (HMENU)ID_EDIT_PHONE, NULL, NULL);
-    
+    CreateWindow("BUTTON", "设置", WS_CHILD | WS_VISIBLE,
+                 360, 400, 80, 30, hwnd, (HMENU)ID_BUTTON_SETTING, NULL, NULL);
+        
     CreateWindow("BUTTON", "注册", WS_CHILD | WS_VISIBLE,
-                 360, 400, 80, 30, hwnd, (HMENU)ID_BUTTON_REGISTER, NULL, NULL);
+                 360, 330, 80, 30, hwnd, (HMENU)ID_BUTTON_REGISTER, NULL, NULL);
+
+    // CreateWindow("STATIC", "电话:", WS_CHILD | WS_VISIBLE,
+    //              300, 360, 50, 25, hwnd, NULL, NULL, NULL);
+
+    // CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
+    //              360, 360, 150, 25, hwnd, (HMENU)ID_EDIT_PHONE, NULL, NULL);
 }
 
 

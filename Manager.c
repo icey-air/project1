@@ -11,7 +11,7 @@ extern Plane_information* g_head;
 void Manager_Login(HWND hwnd)
 {
     char username[20], password[20];
-    GetDlgItemText(hwnd, ID_EDIT_USERNAME, username, 20);
+    GetDlgItemText(hwnd, ID_EDIT_ACCOUNT, username, 20);
     GetDlgItemText(hwnd, ID_EDIT_PASSWORD, password, 20);
     
     if(strcmp(username, MANAGER_ACCOUNT) == 0 && strcmp(password, MANAGER_PASSWORD) == 0)

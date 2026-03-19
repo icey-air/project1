@@ -4,7 +4,7 @@
 #include <string.h>
 #include "tourist.h"
 
-
+void ShowLoginWindow(HWND hwnd);
 
 /*@brief	´´ÔìÓÎ¿Í
 * @param	windows¾ä±ú
@@ -26,7 +26,7 @@ struct tourist* Register_Tourist(HWND hwnd,struct tourist*head)//ÓÐbug,¿ÕµÄÒ²ÄÜ×
 
 	if(head!=NULL)//²»ÊÇµÚÒ»¸ö×¢²áÕË»§
 	{
-		GetDlgItemText(hwnd, ID_EDIT_USERNAME, username, 20);
+		GetDlgItemText(hwnd, ID_EDIT_ACCOUNT, username, 20);
 		GetDlgItemText(hwnd, ID_EDIT_PASSWORD, Password, 20);
     	GetDlgItemText(hwnd, ID_EDIT_PHONE, phone, 20);
 
@@ -57,12 +57,13 @@ struct tourist* Register_Tourist(HWND hwnd,struct tourist*head)//ÓÐbug,¿ÕµÄÒ²ÄÜ×
 
 		MessageBox(hwnd, "×¢²á³É¹¦", "ÌáÊ¾", MB_OK);	
 		Tourist_File_Save(head);
+		ShowLoginWindow(hwnd);
 		return head;
 	}
 	
 	else//µÚÒ»¸ö×¢²áÕË»§
 	{		
-		GetDlgItemText(hwnd, ID_EDIT_USERNAME, username, 20);
+		GetDlgItemText(hwnd, ID_EDIT_ACCOUNT, username, 20);
 		GetDlgItemText(hwnd, ID_EDIT_PASSWORD, Password, 20);
     	GetDlgItemText(hwnd, ID_EDIT_PHONE, phone, 20);
 
@@ -77,6 +78,7 @@ struct tourist* Register_Tourist(HWND hwnd,struct tourist*head)//ÓÐbug,¿ÕµÄÒ²ÄÜ×
 		p1->Ticket_List=NULL;
 		MessageBox(hwnd, "×¢²á³É¹¦", "ÌáÊ¾", MB_OK);
 		Tourist_File_Save(head);
+		ShowLoginWindow(hwnd);
 		return head;
 	}	
 }	
@@ -92,7 +94,7 @@ struct tourist* Loging_Account(HWND hwnd,struct tourist*head)
 {
 	char Account[11];
 	char Password[21];
-	GetDlgItemText(hwnd, ID_EDIT_USERNAME, Account, 20);
+	GetDlgItemText(hwnd, ID_EDIT_ACCOUNT, Account, 20);
 	GetDlgItemText(hwnd, ID_EDIT_PASSWORD, Password, 20);
 
 	struct tourist*p;

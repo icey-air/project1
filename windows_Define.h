@@ -25,8 +25,11 @@
 #define ID_BUTTON_CONFIRM_DELETE  1014  // 确认删除按钮ID
 #define ID_BUTTON_CONFIRM_UPDATE  1015  // 确认更新按钮ID
 #define ID_BUTTON_SEARCH_PLANE    1016  // 搜索航班按钮ID
+#define ID_BUTTON_CHANGE_ACCOUNT  1017  // 更改用户信息ID
+#define ID_BUtTON_REGISTER_COMFIRM 1018  // 注册确认按钮
+#define ID_BUtTON_REGISTER_CANCLE 1019  // 注册取消按钮
 
-#define ID_EDIT_USERNAME          2001  // 用户名输入框ID
+#define ID_EDIT_ACCOUNT          2001  // 账户输入框ID
 #define ID_EDIT_PASSWORD          2002  // 密码输入框ID
 #define ID_EDIT_PHONE             2003  // 电话输入框ID
 #define ID_EDIT_PLANE_ID          2004  // 航班号输入框ID
@@ -34,6 +37,8 @@
 #define ID_EDIT_REST_SEAT         2006  // 剩余座位数输入框ID
 #define ID_EDIT_PRIZE             2007  // 价格输入框ID
 #define ID_EDIT_SEARCH_ID         2008  // 搜索航班号输入框ID
+#define ID_EDIT_IDENTIEY_CARD     2009  // 用户身份证输入框ID
+#define ID_EDIT_NAME              2010  // 用户姓名输入框ID
 
 #define ID_LIST_PLANE             3001  // 航班列表框ID
 #define ID_LIST_BOOKING           3002  // 预定列表框ID
@@ -73,14 +78,14 @@
 
 ///白轩宇的添加结束/////////
 
-
+#define ID_BUTTON_SETTING           6001    //设置按钮
 
 /// @param hwnd 
 void ShowAdminWindow(HWND hwnd);
 void ShowUserWindow(HWND hwnd);
 void RefreshPlaneList(HWND hwnd);
 extern HWND g_hMainWindow;  
-
+void Show_Rejister_Window(HWND hwnd);
 
 // HWND g_hMainWindow = NULL;重要的变量，暂时没有想好放哪里，就丢final_test.c了
 

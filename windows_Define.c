@@ -197,3 +197,56 @@ void RefreshPlaneList(HWND hwnd)
         p = p->next;
     }
 }
+
+
+void Show_Rejister_Window(HWND hwnd)
+{
+    // 清除所有现有控件
+    HWND hChild = GetWindow(hwnd, GW_CHILD);
+    while(hChild != NULL)
+    {
+        HWND hNext = GetWindow(hChild, GW_HWNDNEXT);
+        DestroyWindow(hChild);
+        hChild = hNext;
+    }
+    
+    // 创建注册界面控件
+    CreateWindow("STATIC", "用户名:", WS_CHILD | WS_VISIBLE,
+                 300, 200, 50, 25, hwnd, NULL, NULL, NULL);
+    
+    CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
+                 360, 200, 150, 25, hwnd, (HMENU)ID_EDIT_ACCOUNT, NULL, NULL);
+    
+    CreateWindow("STATIC", "密码:", WS_CHILD | WS_VISIBLE,
+                 300, 240, 50, 25, hwnd, NULL, NULL, NULL);
+    
+    CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER | ES_PASSWORD,
+                 360, 240, 150, 25, hwnd, (HMENU)ID_EDIT_PASSWORD, NULL, NULL);
+    
+    CreateWindow("STATIC", "电话:", WS_CHILD | WS_VISIBLE,
+                 300, 280, 50, 25, hwnd, NULL, NULL, NULL);
+
+     CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
+                  360, 280, 150, 25, hwnd, (HMENU)ID_EDIT_PHONE, NULL, NULL);
+
+    CreateWindow("STATIC", "姓名:", WS_CHILD | WS_VISIBLE,
+                 300, 320, 50, 25, hwnd, NULL, NULL, NULL);
+
+    CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
+                  360, 320, 150, 25, hwnd, (HMENU)ID_EDIT_NAME, NULL, NULL);
+    
+    CreateWindow("STATIC", "身份证:", WS_CHILD | WS_VISIBLE,
+                 300, 360, 50, 25, hwnd, NULL, NULL, NULL);
+
+    CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
+                  360, 360, 150, 25, hwnd, (HMENU)ID_EDIT_IDENTIEY_CARD, NULL, NULL);
+
+
+    CreateWindow("BUTTON", "确认注册", WS_CHILD | WS_VISIBLE,
+                 360, 400, 80, 30, hwnd, (HMENU)ID_BUtTON_REGISTER_COMFIRM, NULL, NULL);
+
+    CreateWindow("BUTTON", "取消注册", WS_CHILD | WS_VISIBLE,
+                 360, 440, 80, 30, hwnd, (HMENU)ID_BUtTON_REGISTER_CANCLE, NULL, NULL);
+
+}
+
