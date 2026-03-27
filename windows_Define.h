@@ -48,7 +48,7 @@
 #define ID_EDIT_SEARCH_ID         2008  // 搜索航班号输入框ID
 #define ID_EDIT_IDENTIEY_CARD     2009  // 用户身份证输入框ID
 #define ID_EDIT_NAME              2010  // 用户姓名输入框ID
-
+#define ID_EDIT_PASSWORD_2        2011  //再次输入密码输入框ID
 
 
 
