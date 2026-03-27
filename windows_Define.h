@@ -33,6 +33,12 @@
  #define ID_BUTTON_CHANGE_Account      1022    
 #define ID_BUTTON_CHANGE_Password     1023
 #define ID_BUTTON_CHANGE_Phone        1024
+#define ID_BUTTON_CHANGE_NAME         1025
+#define ID_EDIT_CHANGE_Account      1026
+#define ID_EDIT_CHANGE_Password     1027
+#define ID_EDIT_CHANGE_Phone        1028
+#define ID_EDIT_CHANGE_NAME         1029
+
 
 
 #define ID_EDIT_ACCOUNT          2001  // 账户输入框ID
@@ -45,9 +51,11 @@
 #define ID_EDIT_SEARCH_ID         2008  // 搜索航班号输入框ID
 #define ID_EDIT_IDENTIEY_CARD     2009  // 用户身份证输入框ID
 #define ID_EDIT_NAME              2010  // 用户姓名输入框ID
-
-
-
+#define ID_EDIT_PASSENGER_NAME 2011  // 添加乘客-姓名输入框ID
+#define ID_EDIT_PASSENGER_PHONE 2012  // 添加乘客-电话号码输入框ID
+#define ID_EDIT_PASSENGER_ID 2013  // 添加乘客-身份证输入框ID
+#define ID_EDIT_PASSENGER_NUM 2014  // 添加乘客-人数输入框ID
+#define ID_EDIT_PASSENGER_COUNT 2015  // 添加乘客-人数输入框ID
 
 
 #define ID_LIST_PLANE             3001  // 航班列表框ID
@@ -87,8 +95,13 @@
 #define ID_BUTTON_CANCEL_ADD_PLANE  5019  // 取消添加按钮
 
 ///白轩宇的添加结束/////////
+#define ID_BUTTON_ADD_PASSENGERS 6002    //添加同行乘客按钮ID
 
 #define ID_BUTTON_SETTING           6001    //设置按钮
+
+
+#define ID_BUTTON_ADD_CANCLE  7003  // 取消添加按钮ID
+#define ID_BUTTON_ADD_CONFIRM 7004  // 确认添加按钮ID
 
 /// @param hwnd 
 void ShowAdminWindow(HWND hwnd);
@@ -97,7 +110,7 @@ void RefreshPlaneList(HWND hwnd);
 extern HWND g_hMainWindow;  
 void Show_Rejister_Window(HWND hwnd);
 void Show_Account_Information_Change_Window(HWND hwnd);
-
+void Add_New_Passengers_Window(HWND hwnd);
 extern struct tourist*Now_Account;
 
 // HWND g_hMainWindow = NULL;重要的变量，暂时没有想好放哪里，就丢final_test.c了     --这玩意是啥来着？

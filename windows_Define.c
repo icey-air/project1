@@ -92,6 +92,9 @@ void ShowUserWindow(HWND hwnd)
     
     CreateWindow("BUTTON", "退出登录", WS_CHILD | WS_VISIBLE,
                  670, 20, 100, 30, hwnd, (HMENU)ID_BUTTON_LOGOUT, NULL, NULL);
+
+    CreateWindow("BUTTON", "添加同行乘客", WS_CHILD | WS_VISIBLE,
+                 20, 280, 100, 30, hwnd, (HMENU)ID_BUTTON_ADD_PASSENGERS, NULL, NULL);
     
     // 创建列表框显示所有航班
     CreateWindow("LISTBOX", NULL,
@@ -152,7 +155,6 @@ void ShowUserWindow(HWND hwnd)
                  360, y, 35, 20, hwnd, (HMENU)ID_EDIT_TAKEOFF_MINUTE, NULL, NULL);
     CreateWindow("STATIC", "分", WS_CHILD | WS_VISIBLE,
                  400, y, 20, 20, hwnd, NULL, NULL, NULL);
-
     // 显示所有航班
     RefreshPlaneList(hwnd);
 }
@@ -332,3 +334,43 @@ void Show_Account_Information_Change_Window(HWND hwnd)
 
 }
 
+void Add_New_Passengers_Window(HWND hwnd)
+{
+    // 清除所有现有控件
+    HWND hChild = GetWindow(hwnd, GW_CHILD);
+    while(hChild != NULL)
+    {
+        HWND hNext = GetWindow(hChild, GW_HWNDNEXT);
+        DestroyWindow(hChild);
+        hChild = hNext;
+    }
+    
+    CreateWindow("STATIC", "电话:", WS_CHILD | WS_VISIBLE,
+                 300, 280, 50, 25, hwnd, NULL, NULL, NULL);
+
+     CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
+                  360, 280, 150, 25, hwnd, (HMENU)ID_EDIT_PHONE, NULL, NULL);
+
+    CreateWindow("STATIC", "姓名:", WS_CHILD | WS_VISIBLE,
+                 300, 320, 50, 25, hwnd, NULL, NULL, NULL);
+
+    CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
+                  360, 320, 150, 25, hwnd, (HMENU)ID_EDIT_NAME, NULL, NULL);
+    
+    CreateWindow("STATIC", "身份证:", WS_CHILD | WS_VISIBLE,
+                 300, 360, 50, 25, hwnd, NULL, NULL, NULL);
+
+    CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
+                  360, 360, 150, 25, hwnd, (HMENU)ID_EDIT_IDENTIEY_CARD, NULL, NULL);
+
+    CreateWindow("BUTTON", "确认添加", WS_CHILD | WS_VISIBLE,
+                 360, 400, 80, 30, hwnd, (HMENU)ID_BUTTON_ADD_CONFIRM, NULL, NULL);
+
+    CreateWindow("BUTTON", "取消添加", WS_CHILD | WS_VISIBLE,
+                 360, 440, 80, 30, hwnd, (HMENU)ID_BUTTON_ADD_CANCLE, NULL, NULL);
+
+    CreateWindow("BUTTON", "退出", WS_CHILD | WS_VISIBLE,
+                 670, 55, 80, 30, hwnd, (HMENU)ID_BUTTON_ADD_CANCLE, NULL, NULL);
+
+
+}

@@ -264,6 +264,11 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             {
                 List_Ticket_Reservation(hwnd, Now_Account);
             }
+            else if (wmId == ID_BUTTON_ADD_PASSENGERS)
+            {
+                Add_New_Passengers_Window(hwnd);
+            }
+            
 
   
 
