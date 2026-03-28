@@ -1,8 +1,8 @@
 #include "final_test.h"
 #include "tourist.h"
-#include "windows_Define.h"
+#include "DataFile.h"
 #include "Manager.h"
-
+#include "DataFile.h"
 #include "Ticket.h"
 
 /*======================== 全局变量定义 ========================*/
@@ -98,9 +98,23 @@ void ShowUpdatePlaneDialog(HWND hwnd);
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                    LPSTR lpCmdLine, int nCmdShow)
 {
-    // 初始化测试数据（实际使用时可以注释掉）
-    Init_Test_Data();
+
+    // 加载已保存的数据
+    LoadPlaneData(&g_head);
     
+    // 更新航班数量
+    Plane_information* p = g_head;
+    g_planeCount = 0;
+    while (p) { g_planeCount++; p = p->next; }
+    
+    
+    
+    if(g_head == NULL)
+   {
+    Init_Test_Data();
+   }
+    // 加载游客数据
+    LoadAllTourists(&tourist_head,g_head);
     const char CLASS_NAME[] = "FlightManagementSystem";
     
     // 注册窗口类
@@ -191,7 +205,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
               ShowUserWindow(hwnd);
               Change_What=0;
             }
-//---------------------------------------留着，我要封装------------------------------------------//
+
+ //-------------------------------------留着，我要封装------------------------------------------//
 
 
             
@@ -291,6 +306,9 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         
         case WM_DESTROY:
         {
+             // 保存数据
+         SavePlaneData(g_head);
+         SaveAllTourists(tourist_head);
             PostQuitMessage(0);
             return 0;
         }
