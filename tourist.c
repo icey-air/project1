@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include <string.h>
 #include "tourist.h"
-
+#include "DataFile.h"
 void ShowLoginWindow(HWND hwnd);
 
 /*@brief	´´ÔìÓÎ¿Í
@@ -120,7 +120,7 @@ struct tourist* Register_Tourist(HWND hwnd,struct tourist*head)//ÓÐbug,¿ÕµÄÒ²ÄÜ×
 
 
 		MessageBox(hwnd, "×¢²á³É¹¦", "ÌáÊ¾", MB_OK);	
-		Tourist_File_Save(head);
+		SaveAllTourists(head);
 		ShowLoginWindow(hwnd);
 		return head;
 	}
@@ -142,7 +142,7 @@ struct tourist* Register_Tourist(HWND hwnd,struct tourist*head)//ÓÐbug,¿ÕµÄÒ²ÄÜ×
 		p1->Airfare_Cost=0;
 
 		MessageBox(hwnd, "×¢²á³É¹¦", "ÌáÊ¾", MB_OK);
-		Tourist_File_Save(head);
+		SaveAllTourists(head);
 		ShowLoginWindow(hwnd);
 		return head;
 	}	

@@ -35,7 +35,9 @@ void ShowAdminWindow(HWND hwnd)
     
     CreateWindow("BUTTON", "ÍË³öµÇÂ¼", WS_CHILD | WS_VISIBLE,
                  650, 20, 100, 30, hwnd, (HMENU)ID_BUTTON_LOGOUT, NULL, NULL);
-    
+    CreateWindow("STATIC", "º½°àºÅ:", WS_CHILD | WS_VISIBLE,
+                 460, 20, 50, 25, hwnd, NULL, NULL, NULL);
+
     CreateWindow("EDIT", "", WS_CHILD | WS_VISIBLE | WS_BORDER,
                  460, 20, 100, 30, hwnd, (HMENU)ID_EDIT_SEARCH_ID, NULL, NULL);
 
